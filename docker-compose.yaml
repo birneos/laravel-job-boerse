@@ -1,0 +1,59 @@
+version: "3"
+services:
+  nginx:
+    container_name: nginx-jb
+    build:
+      context: .
+      dockerfile: docker/Nginx/Dockerfile
+    ports: 
+      - "84:80"
+    networks:
+      - internal
+    volumes:
+      - ./:/var/www/html/
+      - ./logs/nginx:/var/log/nginx/
+  php:
+    container_name: php-jb
+    build:
+      context: .
+      dockerfile: docker/PHP/Dockerfile
+    networks:
+      - internal
+    volumes:
+      - ./:/var/www/html/
+      - ./logs/php:/var/log/fpm-php.www.log
+    expose:
+      - "9001"
+  db:
+    restart: always
+    image: mysql:latest
+    platform: linux/x86_64
+    container_name: db-jb
+    ports:
+     - "3309:3306"
+    volumes:
+      - ./db-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 'root'
+      MYSQL_USER: 'admin'
+      MYSQL_PASSWORD: 'password'
+    healthcheck:
+      test: ["CMD", "bash", "-c", "MYSQL_PWD=root mariadb --user=root --database jobboerse --host 127.0.0.1", "status"]
+      timeout: 20s
+      retries: 10
+    networks:
+      - internal
+  adminer:
+    container_name: adminer-jb
+    image: adminer
+    restart: always
+    ports:
+      - 8084:8080
+    networks:
+      - internal
+    depends_on:
+      - db
+
+networks:
+  internal:
+    driver: bridge
