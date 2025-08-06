@@ -8,8 +8,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        black: 'red', // eigene black-Farbe
+        black: '#060606', // eigene black-Farbe
       },
+      fontFamily: {
+        "hanken-grotesk": ["Hanken Grotesk","sans-serif"]
+      }
     },
   },
   plugins: [],

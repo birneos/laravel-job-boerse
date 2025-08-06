@@ -67,3 +67,20 @@ docker compose exec php php artisan config:cache
     tailwindcss.com -> docs -> installation -> Framework Guides -> Laravel
 
         npm install tailwindcss @tailwindcss/vite
+
+
+#### Integrate google fonts
+
+  Add following Fonts to your app.css and you
+  can use it in your tags like '<body class="font-hanken-grotesk">'
+
+  Resource/css/app.css
+
+  ```
+  @import url("https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet");
+   
+
+    @theme {
+        --font-hanken-grotesk: 'Hanken+Grotesk',sans-serif;
+    }
+  ```
