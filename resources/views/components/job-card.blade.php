@@ -1,4 +1,4 @@
-  <div  class="p-4 bg-white/50 rounded-xl flex flex-col text-center">
+  <div  class="p-4 bg-white/10 rounded-xl flex flex-col text-center">
             <div class="self-start text-sm">Laracasts</div>
             <div class="py-8 font-bold">
                 <h3>Video Producer</h3>
@@ -11,6 +11,6 @@
                  <x-tag>Tag</x-tag> 
                </div>
 
-                <img src="https://placehold.co/42x42" class="rounded-xl">
+                <x-employer-logo :width="42"/>
             </div>
 </div>
