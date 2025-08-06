@@ -95,3 +95,22 @@ docker compose exec php php artisan config:cache
 }
 
   ```
+
+### Tailwind group - cool
+
+  I want hover over a job-card element and want blue text
+  for the a-tag element with text of h3 element
+
+  1. add the word "group" to your parent element
+  2. add "group-hover:text-blue-600" to h3 element
+
+    ```
+        <div  class="... group">
+            <div class="self-start text-sm">Laracasts</div>
+            <div class="py-8 font-bold">
+                <h3 class="group-hover: text-blue-600">Video Producer</h3>
+              ...
+            </div>
+</div>
+    ```
+  
