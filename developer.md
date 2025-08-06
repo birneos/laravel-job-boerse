@@ -38,4 +38,32 @@ docker compose exec php php artisan config:cache
     @vite(['resources/js/app.js'])
   ...
 
-  
+  update welcome.blade.php with new layout 
+  ...
+    <x-layout>    
+    </x-layout>
+  ...  
+
+  create production files for versioning and image cache bursting
+
+    npm run build 
+
+  we get an error after reloading page
+
+    " Unable to locate file in Vite manifest: resources/images/logo.svg. "
+
+  Activate Cache busting and image versioning in vite and again "npm run build" now with see
+  also the cached image file
+
+    resources/js/app.js and add following
+
+    //versioning images
+    import.meta.glob([
+      '../images/**'
+    ]);
+
+#### Now install tailwindcss 
+
+    tailwindcss.com -> docs -> installation -> Framework Guides -> Laravel
+
+        npm install tailwindcss @tailwindcss/vite
