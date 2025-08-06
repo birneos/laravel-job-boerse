@@ -84,3 +84,14 @@ docker compose exec php php artisan config:cache
         --font-hanken-grotesk: 'Hanken+Grotesk',sans-serif;
     }
   ```
+#### Customizing font-size
+
+  I need for Tags a 10px font-size, add customizing to app.css
+  This overwrite "text-2xs" thats per default has 12px
+
+  ```
+  @theme {
+    --text-2xs: 0.625rem;
+}
+
+  ```
