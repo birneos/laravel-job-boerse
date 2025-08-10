@@ -113,4 +113,36 @@ docker compose exec php php artisan config:cache
             </div>
 </div>
     ```
-  
+
+### blades and css
+
+    You can create component and passing additional css, to combine
+    both you can go diffent ways
+
+    // Define with @php directive class variable with css
+     ```
+     
+          @php
+              $classes = 'p-4 bg-white/10 rounded-xl flex flex-col text-center border border-transparent hover:border-blue-800 group  transition-colors duration-300'
+      @endphp
+      
+      <div {{ $attributes(['class'=>$classes]) }}>
+        {{ $slot }}
+      </div>
+     ```
+
+
+    ```
+      // Merge
+      <div {{ $attributes->merge(['class'=>$classes]) }}>
+        {{ $slot }}
+      </div>
+     ```
+
+     
+    ```
+      // Same like merge
+      <div {{ $attributes(['class'=>$classes]) }}>
+        {{ $slot }}
+      </div>
+     ```
