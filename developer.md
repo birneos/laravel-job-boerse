@@ -146,3 +146,28 @@ docker compose exec php php artisan config:cache
         {{ $slot }}
       </div>
      ```
+
+
+#### Different Tag Size, use conditional
+
+  Use prop to passing attribute 'size' and you can control with conditional if the text size
+
+  ```
+  @props(['size' => 'base'])
+
+  @php
+
+    $classes = "bg-white/10 hover:bg-white/25 rounded-xl font-bold transition-colors duration-300";
+
+    if($size === 'base')
+      $classes.=" px-5 py-1 text-sm";
+    
+    
+    if($size === 'small')
+      $classes.=" px-3 py-1 text-2xs";
+    
+
+  @endphp
+  <a href="" class="{{ $classes }}">{{ $slot }}</a>
+
+  ```
