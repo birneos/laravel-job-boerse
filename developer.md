@@ -229,6 +229,8 @@ docker compose exec php php artisan config:cache
 
     Job belongs to Employer and Employer has many Jobs
 
+### JobFactory and EmployerFactory completed
+
 
 
     
