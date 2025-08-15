@@ -203,3 +203,7 @@ docker compose exec php php artisan config:cache
   php artisan help make:model
 
   php artisan make:model Employer -cfs --policy
+
+## Create Job Model, Controller ...
+
+  php artisan make:model Job --all
