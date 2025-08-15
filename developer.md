@@ -198,4 +198,8 @@ docker compose exec php php artisan config:cache
 
   php artisan migrate:fresh
 
+## Create Employer Model, Controller, Factory, Seeder, Policy
 
+  php artisan help make:model
+
+  php artisan make:model Employer -cfs --policy
