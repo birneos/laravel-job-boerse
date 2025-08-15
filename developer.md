@@ -207,3 +207,15 @@ docker compose exec php php artisan config:cache
 ## Create Job Model, Controller ...
 
   php artisan make:model Job --all
+
+
+## Fill Job Migration and migrate
+
+  employer (FK), title, salary, location, schedule (VZ,HZ etc), url, featured (job listing, ranking)
+
+
+  php artisan migrate
+
+
+
+
