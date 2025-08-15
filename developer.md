@@ -216,6 +216,21 @@ docker compose exec php php artisan config:cache
 
   php artisan migrate
 
+### Employer Model, Relation between Employer and User 
 
+    // Der Arbeitgeber gehört zu einem User und der User hat einen Arbeitgeber, der User
+    // tritt hier als Vertreter für den AG auf
+
+    Employer belongs to user and user has one employer
+
+### Job Model, Relation between Job and Employer
+
+    // Ein Job gehört zu einem Arbeitgeber und ein Arbeitgeber hat viele Jobs
+
+    Job belongs to Employer and Employer has many Jobs
+
+
+
+    
 
 
