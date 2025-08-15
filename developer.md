@@ -171,3 +171,31 @@ docker compose exec php php artisan config:cache
   <a href="" class="{{ $classes }}">{{ $slot }}</a>
 
   ```
+
+## Create Tables (Migrations)
+
+  Cretae Employer Table as Migration and fill up with 
+  UserID, name and logo path
+
+  php artisan make:migration create_employer_table
+
+
+### Laravel default tables jobs, job_batches, failed_jobs we will rename
+
+  Change default table names of queue jobs, because we want use jobs for our
+  eloquent model
+
+  // jobs -> queue_jobs, job_batches -> queue_job_batches, failed_jobs->queued_failed_jobs
+  config/queue.php
+
+  And change the migration file name to _queue_jobs_
+
+  0001_01_01_000002_create_queue_jobs_table.php
+
+  And change the table names in the migration file above 
+
+  And migrate:fresh to migrate data tables
+
+  php artisan migrate:fresh
+
+
