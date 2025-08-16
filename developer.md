@@ -268,13 +268,7 @@ docker compose exec php php artisan config:cache
 
   Unit = small spectrum of a test
 
-## Create First Test
-  // Feature Test
-  php artisan make:test
 
-## Running Test
-
-  php artisan test
 
 
 
