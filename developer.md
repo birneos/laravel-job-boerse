@@ -232,6 +232,52 @@ docker compose exec php php artisan config:cache
 ### JobFactory and EmployerFactory completed
 
 
+# Test with Pest (Wrapper um PHPUnit)
+
+## Install Pest
+
+  // Install Pest
+   composer require pestphp/pest --dev
+
+   // If we are using Larvavel install Laravel Plugin
+   composer require pestphp/pest-plugin-laravel --dev
+
+  // Initialiize Pest
+   ./vendor/bin/pest --init
+
+## Configure Pest
+
+   Featue and Unit Folder added to scan for tests and uncomment "RefreshDatabase", after every 
+   test, database will refreshed
+
+   Pest.php
+
+   ```
+    pest()->extend(Tests\TestCase::class)
+    ->use(Illuminate\Foundation\Testing\RefreshDatabase::class)
+    ->in('Feature','Unit');
+   ```
+
+## Configure phpunit.xml
+
+   You can configure to use Database instead Memory for testing or a Mailer like SMTP instead an array.
+
+## Difference Feature or Unit Test
+
+  Feature = wide spectrum of test, like browsertest or controller input validation, database 
+
+  Unit = small spectrum of a test
+
+## Create First Test
+  // Feature Test
+  php artisan make:test
+
+## Running Test
+
+  php artisan test
+
+
+
 
     
 
