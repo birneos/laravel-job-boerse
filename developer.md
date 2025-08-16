@@ -268,6 +268,28 @@ docker compose exec php php artisan config:cache
 
   Unit = small spectrum of a test
 
+## Create First Test
+  // Feature Test
+  php artisan make:test
+
+### AAA Principle in Tests - Arrange, Act, Assert
+
+   // AAA - Arrange, Act, Assert
+      Every Test should have AAA
+
+    // Arrange: We arrange a Testworld
+      i.e. Create an employer and a job associated with that employer
+
+    // Act: Performs a action
+      i.e. Check if the job belongs to the employer
+
+    // Assert: What do you expect to happen? 
+      i.e. Verify the relationship
+
+## Running Test
+
+  php artisan test
+
 
 
 
