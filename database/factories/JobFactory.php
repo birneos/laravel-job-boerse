@@ -19,7 +19,7 @@ class JobFactory extends Factory
     {
         return [
             'employer_id' => Employer::factory(), // Assuming EmployerFactory exists
-            'name' => fake()->jobTitle(),
+            'title' => fake()->jobTitle(),
             'salary' => fake()->randomElement(['€30,000', '€40,000', '€50,000', '€60,000']),
             'location' => fake()->randomElement(['Remote', 'Berlin', 'Hamburg', 'Munich']),
             'schedule' => fake()->randomElement(['Vollzeit', 'Teilzeit', 'Freelance']),
