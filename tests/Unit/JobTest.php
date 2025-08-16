@@ -19,3 +19,13 @@ it('belongs to an employer', function () {
     // Act and Assert: Check if the job's employer relationship is correct
     expect($job->employer()->is($employer))->toBeTrue();
 });
+
+
+it('can have tags', function () {
+    // Arrange: Create a job using a factory
+    $job = \App\Models\Job::factory()->create();
+
+    $job->tag("Laravel");
+
+    expect($job->tags)->toHaveCount(1);
+});

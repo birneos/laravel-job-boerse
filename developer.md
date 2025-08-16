@@ -286,6 +286,34 @@ docker compose exec php php artisan config:cache
     // Assert: What do you expect to happen? 
       i.e. Verify the relationship
 
+
+## TestDriven approach, create my World and code it
+
+    create my fantasy world, job can have tags. Add Tag ($job->tag) and check whether
+    $job->tags have 1 element. Code still doesnt exist, step by step we create our real world
+
+    ```
+    it('can have tags', function () {
+        // Arrange: Create a job using a factory
+      $job = \App\Models\Job::factory()->create();
+
+      tag doesnt exist in code, test will show error and we code it
+      $job>tag('Frontend');
+
+      tags collection doesnt exist, test will show two errors so we code it
+      first: the function tags doesnt exists
+      second: no relation exist for job to tags
+
+      Solution:
+      first: create function that return array or collection
+      second: create Tag Model,Factory and Migration with php artisan make:model Tag -fm
+    
+      expect($job->tags)->toHaveCount(1);
+    });
+    ```
+
+
+
 ## Running Test
 
   php artisan test
