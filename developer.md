@@ -248,7 +248,7 @@ docker compose exec php php artisan config:cache
 ## Configure Pest
 
    Featue and Unit Folder added to scan for tests and uncomment "RefreshDatabase", after every 
-   test, database will refreshed
+   test, database will refreshed, we want that Feature and Unit for testing
 
    Pest.php
 
@@ -312,12 +312,61 @@ docker compose exec php php artisan config:cache
     });
     ```
 
+### Tag Model, Factory and Migration
 
+#### create Tag Model, Factory, Migration
+      
+      php artisan make:model Tag -fm
+
+#### create Job <-> Tags Relation
+
+    A job can have many tags and a tag can have many jobs
+
+      Job Model
+
+      public function Tag(){
+        return $this->belongsToMany(Tag::class);
+      }
+
+#### create pivot table job_tag , so job and tag ids can related
+
+
+      php artisan make:migration create_job_tag_table
+
+      ```
+      public function up(): void
+      {
+          Schema::create('job_tag', function (Blueprint $table) {
+              $table->id();
+              $table->foreignIdFor(Job::class)->constrained()->cascadeOnDelete();    // if job deleted, cascade and delete also datasets with job id
+              $table->foreignIdFor(Tag::class)->constrained()->cascadeOnDelete();    // if tag deleted, cascade and delete also datasets with tag id
+              // Additional fields can be added here if needed
+              $table->timestamps();
+          });
+      }
+      ```
+    
+    php artisan migrate
+#### php artisan test failed with "Add [name] to fillable property to allow mass assignment on [App\Models\Tag]
+
+  2 Solutions
+
+  1. add fillable to  Tag class
+  2. general deactivate in AppServiceProvider, more see ../basicproject
+
+    ```
+      /**
+      * Bootstrap any application services.
+      */
+      public function boot(): void
+      {
+          Model::unguard()
+      }
+    ```
 
 ## Running Test
 
   php artisan test
-
 
 
 
