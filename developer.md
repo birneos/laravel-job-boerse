@@ -364,6 +364,13 @@ docker compose exec php php artisan config:cache
       }
     ```
 
+# Troubleshooting
+
+  SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo for db failed: Temporary failure in name resolution (Connection: mariadb, SQL: select exists (select 1 from information_schema.tables where table_schema =   schema() and table_name = 'migrations' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED')) as exists)
+
+   docker compose exec php php artisan optimize    
+   docker compose exec php php artisan config:cache
+
 ## Running Test
 
   php artisan test
