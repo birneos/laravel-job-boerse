@@ -393,6 +393,14 @@ docker compose exec php php artisan config:cache
     });
   ```
 
+## Authentication
+
+   Create Login + Register Routes+Controller
+
+   php artisan make:controller SessionController --resource
+   php artisan make:controller SessionController --resource
+
+
 
 # Troubleshooting
 
