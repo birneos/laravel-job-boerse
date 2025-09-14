@@ -14,11 +14,11 @@ return new class extends Migration
     {
         Schema::create('jobs', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Employer::class);
+            $table->foreignIdFor(Employer::class)->constrained()->cascadeOnDelete();
             $table->string('title');
             $table->string('salary');
             $table->string('location');
-            $table->string('schedule')->default('Vollzeit');
+            $table->string('schedule')->default('Full-time'); //Full-time, Part-time, Internship
             $table->string('url');    //extern job page
             $table->boolean('featured')->default(false); //job ranking in list 
             $table->timestamps();
