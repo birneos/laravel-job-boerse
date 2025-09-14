@@ -1,5 +1,9 @@
 <?php
 
+use App\Models\Job;
+use App\Models\Tag;
+use Illuminate\Database\Eloquent\Factories\Sequence;
+
 it('belongs to an employer', function () {
 
     // AAA - Arrange, Act, Assert
@@ -28,4 +32,18 @@ it('can have tags', function () {
     $job->tag("Laravel");
 
     expect($job->tags)->toHaveCount(1);
+});
+
+
+it('is featured', function()
+{
+    $sequence = new Sequence(['featured'=>false, 'schedule'=>'Full Time']
+    ,['featured'=>true, 'schedule'=>'Full Time']
+    );
+
+        $tags = Tag::factory(3)->create();
+        Job::factory(5)->hasAttached($tags)->create($sequence);
+
+    $jobs = Job::all()->groupBy('featured');
+    expect($jobs[0][0]->featured==1)->toBeTrue();
 });

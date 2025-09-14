@@ -11,7 +11,7 @@
         <x-section-heading>Featured Job</x-section-heading>
 
         <div class="grid lg:grid-cols-3 gap-8 mt-6">
-            @foreach($jobs as $job)
+            @foreach($jobsFeatured as $job)
               <x-job-card :job="$job"/>
             @endforeach
        
@@ -32,7 +32,7 @@
     <section>
         <x-section-heading>Recent Jobs</x-section-heading>
         <div class="mt-6 space-y-6">
-            @foreach($jobs as $job)
+            @foreach($jobsRecent as $job)
               <x-job-card-wide :job="$job"/>
             @endforeach
          

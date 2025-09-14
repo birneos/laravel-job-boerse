@@ -364,6 +364,36 @@ docker compose exec php php artisan config:cache
       }
     ```
 
+#### Featured + Recent Jobs in JobController
+
+  We need Jobs with featured (hervorgehoben)
+
+   ``` 
+    //JobController.php
+
+    $jobCollection = Job::all()->load('employer','tags');
+
+        [$featured, $recent] = $jobCollection->partition(fn($job) => $job->featured===1);
+  ```
+
+  Create Unit Test in JobTest.php
+
+  ```
+  it('is featured', function()
+    {
+        $sequence = new Sequence(['featured'=>false, 'schedule'=>'Full Time']
+        ,['featured'=>true, 'schedule'=>'Full Time']
+        );
+
+            $tags = Tag::factory(3)->create();
+            Job::factory(5)->hasAttached($tags)->create($sequence);
+
+        $jobs = Job::all()->groupBy('featured');
+        expect($jobs[0][0]->featured==1)->toBeTrue();
+    });
+  ```
+
+
 # Troubleshooting
 
   SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo for db failed: Temporary failure in name resolution (Connection: mariadb, SQL: select exists (select 1 from information_schema.tables where table_schema =   schema() and table_name = 'migrations' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED')) as exists)

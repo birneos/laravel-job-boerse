@@ -14,9 +14,17 @@ class JobController extends Controller
      */
     public function index()
     {
+
+      //  $jobs = Job::all()->groupBy('featured');
+        $jobCollection = Job::all()->load('employer','tags');
+
+        [$featured, $recent] = $jobCollection->partition(fn($job) => $job->featured===1);
+
+
         return view('jobs.index', [
             //'jobs' => Job::with('employer','tags')->latest()->paginate(10),
-            'jobs' => Job::with('employer','tags')->latest()->paginate(),
+            'jobsFeatured' =>  $featured,// Job::with('employer','tags')->latest()->paginate(),
+            'jobsRecent' => $recent,
             'tags' => Tag::all()
         ]);
     }
