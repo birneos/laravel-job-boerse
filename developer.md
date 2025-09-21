@@ -481,13 +481,21 @@ docker compose exec php php artisan config:cache
 
   Add @auth @endauth  and @guest @endguest to control elements are showing as logged in user or guest in the layout.blade.php 
 
-#### SearchController.php
+#### SearchController.php, search for jobs 
 
-  Add Route
+  Search for job titles
+      Add Route
 
-  Add results.blade.php
+      Add results.blade.php
 
-  Use <x-forms-form> for Search form
+      Use <x-forms-form> for Search form
+
+####  TagsController.php, search for Tags
+
+  Tag model need association to jobs, find jobs with tag name (many-to-many)
+
+  TagsController, passing Tag (invoke) and looking for Tag name in Route (web.php)
+
 
 # Troubleshooting
 
