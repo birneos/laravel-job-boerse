@@ -413,6 +413,64 @@ docker compose exec php php artisan config:cache
   Import for FileUpload, to Add to form enctype="multipart/form-data" for fileupload "Logo", only then
   we get the upload as object
 
+#### RegisteredUserController
+
+  Register Form send Data to store Data
+
+  Validate User data and Employer Data  !!! EVER VALIDATE
+
+    ```
+          $userAttributes = $request->validate([ 
+        'name'=>['required','min:3'],
+        'email'=>[  'required','email','unique:users,email','max:254'],
+        'password'=>['required','confirmed',Password::min(6)],
+        'password_confirmation'=>['required','same:password']
+        ]);
+
+
+      // 2: Validate Employer
+
+      $employerAttributes = $request->validate([
+        'name'=>['required'],
+        'logo'=>['required',File::types(['png','jpg','webp'])->max(5*1024)],
+       
+      ]);
+    ```
+
+  Create User, Save Logo and  assign Employer Data to new User
+
+    ```
+      $user = User::create($userAttributes);
+
+      $request->logo->store('logo','public');  // store in storage/app/public/logo
+
+      // Assign Employer to User
+      $user->employer()->create([
+            'name'=>$employerAttributes['name'],
+            'logo'=>$path
+        ]);
+
+    ```
+
+
+  Login Registred User + redirect to homepage
+
+    ```
+    
+    ```
+
+
+  
+
+
+###  Filesystem, determine where i store my data - local, public folder, s3 etc.
+
+    config/filesystems you see where you can save files by upload 
+
+    change in .env from local to public
+     FILESYSTEM_DISK=public
+
+    data will the stored in storage/app/public/logo and we create later a symbolic link to the /public folder
 
 # Troubleshooting
 
