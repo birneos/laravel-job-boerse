@@ -400,6 +400,18 @@ docker compose exec php php artisan config:cache
    php artisan make:controller SessionController --resource
    php artisan make:controller SessionController --resource
 
+### Views + Forms
+
+  Import Blade Elements Form, Buttons, Label, Inputs by Jeffrey Ways Github https://github.com/laracasts/pixel-position
+
+  Copied to /resources/views/components/forms
+
+#### Register.blade.php
+
+  Create Register Form
+
+  Import for FileUpload, to Add to form enctype="multipart/form-data" for fileupload "Logo", only then
+  we get the upload as object
 
 
 # Troubleshooting
