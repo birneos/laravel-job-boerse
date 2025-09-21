@@ -2,9 +2,12 @@
    <div class="space-y-10">
      <section class="text-center pt-6">
         <h1 class="font-bold text-4xl">Lets find your Job</h1>
-        <form action="" class="mt-6">
+        <!-- <form action="" class="mt-6">
             <input type="text" class="rounded-xl bg-white/10 border-white/10 px-5 py-4 w-full max-w-xl" placeholder="I am looking for"/>
-        </form>
+        </form> -->
+        <x-forms.form method="GET" action="/search" class="mt-6">
+            <x-forms.input :label="false" name="q" placeholder="Search by title, skills, or company" />
+        </x-forms.form>
      </section>
 
      <section class="pt-10">

@@ -481,6 +481,14 @@ docker compose exec php php artisan config:cache
 
   Add @auth @endauth  and @guest @endguest to control elements are showing as logged in user or guest in the layout.blade.php 
 
+#### SearchController.php
+
+  Add Route
+
+  Add results.blade.php
+
+  Use <x-forms-form> for Search form
+
 # Troubleshooting
 
   SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo for db failed: Temporary failure in name resolution (Connection: mariadb, SQL: select exists (select 1 from information_schema.tables where table_schema =   schema() and table_name = 'migrations' and table_type in ('BASE TABLE', 'SYSTEM VERSIONED')) as exists)
