@@ -458,8 +458,6 @@ docker compose exec php php artisan config:cache
     ```
     
     ```
-
-
   
 
 
@@ -471,6 +469,17 @@ docker compose exec php php artisan config:cache
      FILESYSTEM_DISK=public
 
     data will the stored in storage/app/public/logo and we create later a symbolic link to the /public folder
+
+
+#### SessionController.php
+
+  Add Login Form, login.blade.php adapt many by register.blade.php
+
+  Add Logic to SessionController
+
+  Add Routes to web.php, All routes for guests and Logout only for users are logged in
+
+  Add @auth @endauth  and @guest @endguest to control elements are showing as logged in user or guest in the layout.blade.php 
 
 # Troubleshooting
 
