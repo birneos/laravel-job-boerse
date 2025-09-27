@@ -541,6 +541,25 @@ docker compose exec php php artisan config:cache
         }
   ```
 
+  Fix Validation 'featured', html send 'on' for checked input type checkbox
+
+  ```
+      $attribute = $request->validate([
+            'title'=>'required',
+            'salary'=>'required',
+            'location'=>'required',
+            'schedule'=>['required',Rule::in(['full-time','part-time','contract'])],
+            'url'=>['required','active_url'],  // valid url
+            'featured' => 'in:nullable,on,1,0,true,false',          <------- accecpt this now
+            'tags'=>['nullable'],
+        ]); 
+
+
+        ....
+      
+      // after validation only boolean value should persist to database
+       $attributes['featured'] = $request->boolean('featured');
+  ```
  
 
 # Troubleshooting

@@ -51,14 +51,14 @@ class JobController extends Controller
             'title'=>'required',
             'salary'=>'required',
             'location'=>'required',
-            'salary'=>'required',
             'schedule'=>['required',Rule::in(['full-time','part-time','contract'])],
             'url'=>['required','active_url'],  // valid url
-            'featured'=>'boolean',
+            'featured' => 'in:nullable,on,1,0,true,false',
             'tags'=>['nullable'],
         ]); 
 
         $attribute['featured'] = $request->has('featured');
+        $attributes['featured'] = $request->boolean('featured');
 
         // Wir holen uns den angemeldeten User und den zugehörigen Employer, referenzieren dann die Jobs und erstellen einen neuen Job
 
