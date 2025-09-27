@@ -496,6 +496,52 @@ docker compose exec php php artisan config:cache
 
   TagsController, passing Tag (invoke) and looking for Tag name in Route (web.php)
 
+##### JobController.php, create new Job for Employer
+
+  Create create.blade.php, form for details
+
+
+  Add $fillable (title, salary, location, url) to your Job model, otherwise not allowd to persist
+
+  Store (but not the tags) and Validate Post request by create.blade.php
+
+  ```
+     public function store(Request $request)
+    {
+       $attribute = $request->validate([
+            'title'=>'required',
+            'salary'=>'required',
+            'location'=>'required',
+           
+            'schedule'=>['required',Rule::in(['full-time','part-time','contract'])],
+            'url'=>['required','active_url'],  // valid url
+            'featured'=>'boolean',
+            'tags'=>['nullable'],
+        ]); 
+
+        $attribute['featured'] = $request->has('featured');
+
+        // Wir holen uns den angemeldeten User und den zugehörigen Employer, referenzieren dann die Jobs und erstellen einen neuen Job
+        Auth::user()->employer->jobs()->create(Arr::except($attribute, 'tags'));
+    }
+  ```
+
+  ```
+  // Simple Solution, later refactor that, to add tags when job will created
+     /**
+         * @todo Refactor $job->tag(...) in Job Model to check for existing tags and avoid duplicates "frontend,front-end"
+         */
+        if($attribute['tags'] ?? false){
+           
+            foreach(explode(',', $attribute['tags']) as $tagName){
+                
+            $job->tag($tagName);
+            }
+            
+        }
+  ```
+
+ 
 
 # Troubleshooting
 

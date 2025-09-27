@@ -6,6 +6,11 @@ use App\Http\Requests\StoreJobRequest;
 use App\Http\Requests\UpdateJobRequest;
 use App\Models\Job;
 use App\Models\Tag;
+use Illuminate\Http\Request as HttpRequest;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
+use Illuminate\Validation\Rule;
 
 class JobController extends Controller
 {
@@ -20,10 +25,10 @@ class JobController extends Controller
 
         [$featured, $recent] = $jobCollection->partition(fn($job) => $job->featured===1);
 
-
+        //dd($featured, $recent);
         return view('jobs.index', [
             //'jobs' => Job::with('employer','tags')->latest()->paginate(10),
-            'jobsFeatured' =>  $featured,// Job::with('employer','tags')->latest()->paginate(),
+            'jobsFeatured' =>  $featured->sortBy('created_at',descending: true),// Job::with('employer','tags')->latest()->paginate(),
             'jobsRecent' => $recent,
             'tags' => Tag::all()
         ]);
@@ -34,15 +39,44 @@ class JobController extends Controller
      */
     public function create()
     {
-        //
+        return view('jobs.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreJobRequest $request)
+    public function store(HttpRequest $request)
     {
-        //
+       $attribute = $request->validate([
+            'title'=>'required',
+            'salary'=>'required',
+            'location'=>'required',
+            'salary'=>'required',
+            'schedule'=>['required',Rule::in(['full-time','part-time','contract'])],
+            'url'=>['required','active_url'],  // valid url
+            'featured'=>'boolean',
+            'tags'=>['nullable'],
+        ]); 
+
+        $attribute['featured'] = $request->has('featured');
+
+        // Wir holen uns den angemeldeten User und den zugehörigen Employer, referenzieren dann die Jobs und erstellen einen neuen Job
+
+      
+        $job = Auth::user()->employer->jobs()->create(Arr::except($attribute, 'tags'));
+
+        /**
+         * @todo Refactor $job->tag(...) in Job Model to check for existing tags and avoid duplicates "frontend,front-end"
+         */
+        if($attribute['tags'] ?? false){
+           
+            foreach(explode(',', $attribute['tags']) as $tagName){
+                
+            $job->tag($tagName);
+            }
+            
+        }
+        return redirect('/')->with('success','Job created successfully');
     }
 
     /**

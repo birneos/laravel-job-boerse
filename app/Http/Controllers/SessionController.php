@@ -36,7 +36,7 @@ class SessionController extends Controller
         request()->session()->regenerate();
 
         // redirect
-        return redirect('/jobs'); 
+        return redirect('/'); 
     }
 
      public function destroy(){
