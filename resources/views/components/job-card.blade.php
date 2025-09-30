@@ -16,7 +16,7 @@
                 @endforeach
                </div>
 
-                <x-employer-logo :width="42"/>
+                <x-employer-logo :employer="$job->employer" :width="42"/>
             </div>
             <div class="self-start text-xs text-gray-400 mt-4">
               {{ $job->created_at->diffForHumans() }}

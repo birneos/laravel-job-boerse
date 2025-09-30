@@ -47,6 +47,8 @@ class JobController extends Controller
      */
     public function store(HttpRequest $request)
     {
+
+        dump($request->all());
        $attribute = $request->validate([
             'title'=>'required',
             'salary'=>'required',
@@ -57,11 +59,12 @@ class JobController extends Controller
             'tags'=>['nullable'],
         ]); 
 
-        $attribute['featured'] = $request->has('featured');
-        $attributes['featured'] = $request->boolean('featured');
+        $attribute['featured'] = $request->has('featured')? 1: 0;
+        //$attribute['featured'] = $request->boolean('featured') ? 1 : 0;
 
         // Wir holen uns den angemeldeten User und den zugehörigen Employer, referenzieren dann die Jobs und erstellen einen neuen Job
 
+       
       
         $job = Auth::user()->employer->jobs()->create(Arr::except($attribute, 'tags'));
 

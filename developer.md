@@ -6,6 +6,10 @@
    composer install (in docker)
    npm install 
 
+## Start
+
+    docker compose up -d
+    npm run dev
 
 ### User and File Permissions (optional)
 
@@ -558,7 +562,7 @@ docker compose exec php php artisan config:cache
         ....
       
       // after validation only boolean value should persist to database
-       $attributes['featured'] = $request->boolean('featured');
+       $attribute['featured'] = $request->has('featured')? 1: 0;
   ```
  
 
