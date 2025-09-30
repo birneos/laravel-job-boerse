@@ -13,7 +13,9 @@ class SearchController extends Controller
 
         //$search = request('q');
        
-        $jobs = Job::where('title', 'like', "%{$search}%")
+        $jobs = Job::query()
+            ->with(['employer','tags'])
+            ->where('title', 'like', "%{$search}%")
             // ->orWhere('description', 'like', "%{$search}%")
             // ->orWhere('company', 'like', "%{$search}%")
             ->get();

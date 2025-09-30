@@ -21,6 +21,13 @@ class JobController extends Controller
     {
 
       //  $jobs = Job::all()->groupBy('featured');
+        
+
+        // Solution Jeff: Prvent N+1 Problem with "with" eager loading
+       // $jobs = Job::latest()->with(['employer','tags'])->get()->groupBy('featured');
+       
+        // Solution Community: Load all jobs, then load relationships
+        // Load all jobs with their employer and tags relationships
         $jobCollection = Job::all()->load('employer','tags');
 
         [$featured, $recent] = $jobCollection->partition(fn($job) => $job->featured===1);
