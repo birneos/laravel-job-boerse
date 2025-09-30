@@ -3,7 +3,7 @@
             <div class="self-start text-sm">{{ $job->employer->name }}</div>
             <div class="py-8 font-bold">
                 <h3 class="group-hover:text-blue-600 text-xl font-bold  transition-colors duration-300">
-                  <a href="/jobs/{{ $job->url }}" target="_blank" rel="noopener noreferrer">
+                  <a href="{{ $job->url }}" target="_blank" rel="noopener noreferrer">
                     {{$job->title}}
                   </a>
                 </h3>
