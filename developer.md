@@ -500,7 +500,7 @@ docker compose exec php php artisan config:cache
 
   TagsController, passing Tag (invoke) and looking for Tag name in Route (web.php)
 
-##### JobController.php, create new Job for Employer
+#### JobController.php, create new Job for Employer
 
   Create create.blade.php, form for details
 
@@ -565,6 +565,17 @@ docker compose exec php php artisan config:cache
        $attribute['featured'] = $request->has('featured')? 1: 0;
   ```
  
+### Storage Link to public
+
+    We store our Employer Logos in storage -> app -> public (see above configuration)
+
+    To see it in public folder, we create a symbolic link 
+    
+    Execute in docker container
+      docker composer exec php bash  //go into container
+      
+      php artisan storage:link 
+
 
 # Troubleshooting
 
