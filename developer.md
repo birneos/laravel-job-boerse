@@ -15,7 +15,7 @@
 
   Upload Files should store in Store->app->public, change local to public
   Then create Symbolic Link with php artisan storage:link
-  
+
    .env 
     FILESYSTEM_DISK=public   //
 
@@ -584,6 +584,27 @@ docker compose exec php php artisan config:cache
 
       php artisan storage:link 
 
+### Logout 
+
+    When we are logged in we would see "Logout" Button
+
+    We create form, doesnt use our <x-form> because we didnt use styling
+
+    use @csrf !!!
+    use @method('DELETE'), our Route /logout ues DELETE METHOD NOT POST
+
+    ```
+    // layout.blade.php
+    @auth
+        <div><a href="/jobs/create">Post the Job</a></div>
+        <form method="POST" action="/logout">
+          @csrf
+          @method('DELETE')
+          <button type="submit" class="font-bold">Logout</button>
+        </form> 
+    @endauth
+
+    ```
 
 # Troubleshooting
 

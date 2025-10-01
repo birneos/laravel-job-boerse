@@ -21,7 +21,12 @@
             <a href="#">Compoanies</a>
         </div>
         @auth
-        <div><a href="/jobs/create">Post the Job</a></div>   
+        <div><a href="/jobs/create">Post the Job</a></div>
+        <form method="POST" action="/logout">
+          @csrf
+          @method('DELETE')
+          <button type="submit" class="font-bold">Logout</button>
+        </form> 
         @endauth
 
         @guest
