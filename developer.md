@@ -11,6 +11,14 @@
     docker compose up -d
     npm run dev
 
+## Configuration
+
+  Upload Files should store in Store->app->public, change local to public
+  Then create Symbolic Link with php artisan storage:link
+  
+   .env 
+    FILESYSTEM_DISK=public   //
+
 ### User and File Permissions (optional)
 
   docker compose exec -uroot php bash -c "\
@@ -573,7 +581,7 @@ docker compose exec php php artisan config:cache
     
     Execute in docker container
       docker composer exec php bash  //go into container
-      
+
       php artisan storage:link 
 
 
